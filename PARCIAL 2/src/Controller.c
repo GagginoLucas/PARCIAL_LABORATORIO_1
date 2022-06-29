@@ -35,13 +35,14 @@ int controller_listComputers(LinkedList* Computer) {
 	eComputer* aux = NULL;
 	int len;
 	int i;
-	char descAux[100];
+	char descAux[200];
 	int idAux;
+	char idTipoAuxStr[50];
 	int idTipoAux;
 	float priceAux;
 
 		rtn = 1;
-		printf("\nID     DESCRI<PCION       PRECIO      IDTIPO");
+		printf("%10s  %110s  %10s  %10s\n", "ID", "DESCRIPCION", "PRECIO", "IDTYPE");
 		len = ll_len(Computer);
 
 		for(i = 0; i < len ; i++){
@@ -49,21 +50,25 @@ int controller_listComputers(LinkedList* Computer) {
 			aux = ll_get(Computer, i);
 			if(aux != NULL){
 
-				eComputer_getId(Computer, &idAux);
-				eComputer_getDesc(Computer, descAux);
-				eComputer_getIdTipo(Computer, &idTipoAux);
-				eComputer_getPrice(Computer, &priceAux);
+				eComputer_getPrice(aux, &priceAux);
+								eComputer_getIdTipo(aux, &idTipoAux);
+								eComputer_getId(aux, &idAux);
+								eComputer_getDesc(aux, descAux);
 
-				printf("%10d  %10s  %10f  %10d\n", idAux, descAux, priceAux, idTipoAux);
+				switch(idTipoAux){
+				case 1: strcpy(idTipoAuxStr,"DESKTOP");
+				break;
+				case 2: strcpy(idTipoAuxStr,"LAPTOP");
+				}
+
+
+
+				printf("%10d  %110s  %10f  %10s\n", idAux, descAux, priceAux, idTipoAuxStr);
 
 			}
 
 
 		}
-
 	return rtn;
 }
-
-
-
 

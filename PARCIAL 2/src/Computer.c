@@ -34,7 +34,6 @@ eComputer* computer_newParametros(char* id, char* desc, char* price, char* idTip
 	eComputer_setIdTipo(aux, idTipoAux);
 
 	return aux;
-
 }
 
 
@@ -137,14 +136,14 @@ int eComputer_getIdTipo(eComputer* this, int* idTipo) {
 int eComputer_sortByIdTipo(void* firstID, void* secondID) {
 
 	int rtn = 0;
-	eComputer* auxPassengerOne = (eComputer*) firstID;
-	eComputer* auxPassengerTwo = (eComputer*) secondID;
+	eComputer* auxComputerOne = (eComputer*) firstID;
+	eComputer* auxComputerTwo = (eComputer*) secondID;
 	int idOne;
 	int idTwo;
-	if(auxPassengerOne != NULL && auxPassengerTwo != NULL) {
+	if(auxComputerOne != NULL && auxComputerTwo != NULL) {
 
-		if(eComputer_getId(auxPassengerOne, &idOne) == 1 &&
-		   eComputer_getId(auxPassengerTwo, &idTwo) == 1) {
+			idOne = auxComputerOne->idTipo;
+			idTwo = auxComputerTwo->idTipo;
 
 			if(idOne > idTwo) {
 
@@ -155,9 +154,35 @@ int eComputer_sortByIdTipo(void* firstID, void* secondID) {
 					rtn = -1;
 				}
 			}
-
-		}
 	}
 
 	return rtn;
 }
+
+int eComputer_sortByllmap(void* pComputer)
+{
+	int rtn = -1;
+	int auxPrice;
+	int auxidTipo;
+
+	if(pComputer!=NULL)
+	{
+		eComputer_getPrice(pComputer,&auxPrice);
+		eComputer_getIdTipo(pComputer,&auxidTipo);
+
+		if(auxidTipo == 1)
+		{
+			auxPrice = auxPrice+(auxPrice*0.10);
+			eComputer_setPrice(pComputer, auxPrice);
+		}else if(auxidTipo == 2) {
+			auxPrice = auxPrice+(auxPrice*0.20);
+			eComputer_setPrice(pComputer, auxPrice);
+		}
+	}
+	rtn = 1;
+
+	return rtn;
+}
+
+
+

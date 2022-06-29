@@ -63,7 +63,11 @@ int main(void) {
 					printf("La lista no se pudo cargar\n");
 				}
 		break;
+		case 2: ll_sort(computerList, eComputer_sortByIdTipo, 1);
+		break;
 		case 3: controller_listComputers(computerList);
+		break;
+		case 4: ll_map(computerList, eComputer_sortByllmap);
 		break;
 	}
 

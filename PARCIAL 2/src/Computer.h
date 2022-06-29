@@ -29,5 +29,5 @@ int eComputer_setId(eComputer* this, int id);
 int eComputer_getIdTipo(eComputer* this, int* idTipo);
 int eComputer_setIdTipo(eComputer* this, int idTipo);
 int eComputer_sortByIdTipo(void* firstID, void* secondID);
-
+int eComputer_sortByllmap(void* pComputer);
 #endif /* SRC_COMPUTER_H_ */
